@@ -4,6 +4,7 @@ import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 
 const supabase = useSupabaseClient()
 const toast = useToast()
+const redirectTo = useRuntimeConfig().public.REDIRECT_URL
 
 const fields: AuthFormField[] = [{
     name: 'email',
@@ -41,7 +42,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         email: payload.data.email,
         password: payload.data.password,
         options: {
-            emailRedirectTo: `http://localhost:3000`
+            emailRedirectTo: redirectTo
         }
     })
     if (error) {
