@@ -8,33 +8,19 @@ const toast = useToast()
 const fields: AuthFormField[] = [{
     name: 'email',
     type: 'email',
-    label: 'Email',
-    placeholder: 'Enter your email',
+    label: '邮箱',
+    placeholder: '请输入邮箱',
     required: true
 }, {
     name: 'password',
-    label: 'Password',
+    label: '密码',
     type: 'password',
-    placeholder: 'Enter your password',
+    placeholder: '请输入密码',
     required: true
 }, {
     name: 'remember',
-    label: 'Remember me',
+    label: '记住我',
     type: 'checkbox'
-}]
-
-const providers = [{
-    label: 'Google',
-    icon: 'i-simple-icons-google',
-    onClick: () => {
-        toast.add({ title: 'Google', description: 'Login with Google' })
-    }
-}, {
-    label: 'GitHub',
-    icon: 'i-simple-icons-github',
-    onClick: () => {
-        toast.add({ title: 'GitHub', description: 'Login with GitHub' })
-    }
 }]
 
 const schema = z.object({
@@ -61,8 +47,12 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 <template>
     <div class="flex flex-col items-center justify-center gap-4 p-4">
         <UPageCard class="w-full max-w-md">
-            <UAuthForm :schema="schema" title="Login" description="Enter your credentials to access your account."
-                icon="i-lucide-user" :fields="fields" :providers="providers" @submit="onSubmit" />
+            <UAuthForm :schema="schema" title="登录" :submit="{ label: '登录' }" description="输入你的账号信息以登录"
+                submit-label="Login" icon="i-lucide-user" :fields="fields" @submit="onSubmit">
+                <template #description>
+                    还没有账号？ <ULink to="/register" class="text-primary font-medium">注册</ULink>.
+                </template>
+            </UAuthForm>
         </UPageCard>
     </div>
 </template>
