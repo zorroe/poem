@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_KEY,
-      REDIRECT_URL: process.env.REDIRECT_URL,
+      redirectUrl: process.env.REDIRECT_URL,
     },
   },
   modules: ['@nuxtjs/supabase', '@nuxt/ui'],

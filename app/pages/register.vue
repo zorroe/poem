@@ -4,7 +4,7 @@ import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 
 const supabase = useSupabaseClient()
 const toast = useToast()
-const redirectTo = useRuntimeConfig().public.REDIRECT_URL
+const redirectTo = useRuntimeConfig().public.redirectUrl
 
 const fields: AuthFormField[] = [{
     name: 'email',
