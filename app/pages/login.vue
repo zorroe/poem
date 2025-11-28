@@ -6,8 +6,10 @@ definePageMeta({
 import * as z from 'zod'
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 
+
 const supabase = useSupabaseClient()
 const toast = useToast()
+const redirectTo = useRuntimeConfig().public.redirectUrl
 
 const fields: AuthFormField[] = [{
     name: 'email',
@@ -32,7 +34,10 @@ const providers = [{
     icon: 'i-simple-icons-github',
     onClick: () => {
         supabase.auth.signInWithOAuth({
-            provider: 'github'
+            provider: 'github',
+            options: {
+                redirectTo: redirectTo
+            }
         })
     }
 }]
